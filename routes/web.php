@@ -22,30 +22,31 @@ Route::get('/', function () {
     return view('principal');
 });
 
-//Crear rutas de navegación
-Route::view('/aboutme', 'aboutme');
-
-//Ruta para mostrar vista "Register"
+//Ruta para mostrar vista Register
 Route::get('/register', [RegisterController::class,'index'])->name("register");
-//Ruta para enviar datos al servidor
+
+//Ruta para enviar datos al servidor del registro
 Route::post('/register', [RegisterController::class,'store']);
 
 //Ruta para vista del muro de perfil del usuario autenticado
 Route::get('/muro',[PostController::class, 'index'])->name("posts.index");
 
-//Ruta para vista del login
+//Ruta para vista del login y obtener los datos
 Route::get('/login',[LoginController::class, 'index'])->name("login");
 
-//Ruta para la validacion de login
+//Ruta para la validacion de login y envio de datos
 Route::post('/login', [LoginController::class, 'store']);
 
 //Ruta para cerrar la sesión
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-//Ruta para el formulario de post de publicación
+//Ruta para el formulario de post para la publicación 
 Route::get('/post/create',[PostController::class, 'create'])->name('post.create');
 
 Route::post('/imagenes', [ImagenController::class,'store'])->name('imagenes.store');
 
 //Ruta para almacenar las imagenes
 Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+
+//Ruta para vista del muro de perfil de usuario autenticado
+Route::get('/{user:username}',[PostController::class, 'index'])->name("posts.index");

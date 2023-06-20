@@ -27,16 +27,22 @@ public function store(Request $request) {
    //validacion
    $this->validate($request, [
     'name' => 'required | max:50',
+    'username' => 'required |unique:users|min:3|max:20 ',
     'email' => 'required|unique:users|email|max:60',
-    'password' => 'required|confirmed|min:8',
-    'username' => 'required |unique:users|min:3|max:20 '
+    'password' => 'required|confirmed|min:8'
+
+
+
     ]); 
 
     User::create([
         'name'=>$request->name,
+        'username'=>$request->username,
         'email'=>$request->email,
-        'password'=>Hash::make(  $request->password),
-        'username'=>$request->username
+        'password'=>Hash::make(  $request->password)
+    
+    
+    
     ]);
 
     //Autenticar usuarios

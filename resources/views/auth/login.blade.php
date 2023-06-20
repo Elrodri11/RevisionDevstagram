@@ -14,7 +14,7 @@ Inicia sesion en Devstagram
 
     <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl"  >
     
-        <form action="{{route('login')}}" method="POST" novalidate>
+        <form method="POST" action="{{route('login')}}" novalidate>
             
          @csrf
             
